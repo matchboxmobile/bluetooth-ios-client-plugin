@@ -4,6 +4,15 @@ Learn how to write a Bluetooth LE client application to connect to any hardware 
 
 The plugin is for the new tool by Bluetooth, [Bluetooth Developer Studio](http://www.bluetooth.com/SiteCollectionDocuments/developer-studio/bluetooth-developer-studio.aspx). This plugin allows you to read the profiles for a iOS client. The client we provide is basic and simply connects to a device, the device's profile and logs the characteristics to the terminal.
 
+# TL;DR
+
+* Inside boilerplate-app is an app, you can run it on a real device
+* Inside plugin is a Bluetooth Developer Studio plugin, install it
+* Create a profile, run the plugin, copy the output file over the original inside the app
+* Your app will now know how to read the characteristics of your profile
+
+# Overview
+
 At the highest level, the plugin makes the code in the 'boilerplate-app' work with the profile you have built in Bluetooth Developer Studio. It operates on the CharacteristicHelper.m file which lists all characteristics for a given profile.
 
 Here is CharacteristicHelper.m having been setup for a Health Thermometer (the default setting for the boilerplate).
@@ -36,51 +45,6 @@ Here is CharacteristicHelper.m having been setup for a Health Thermometer (the d
                                         ReadProperty:@"Mandatory" 
                                         NotifyProperty:@"Excluded" 
                                         IndicateProperty:@"Optional"],
-      
-          @"2A29" : [[Characteristic alloc] initWithName:@"Manufacturer Name String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A24" : [[Characteristic alloc] initWithName:@"Model Number String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A25" : [[Characteristic alloc] initWithName:@"Serial Number String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A27" : [[Characteristic alloc] initWithName:@"Hardware Revision String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A26" : [[Characteristic alloc] initWithName:@"Firmware Revision String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A28" : [[Characteristic alloc] initWithName:@"Software Revision String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A23" : [[Characteristic alloc] initWithName:@"System ID"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A2A" : [[Characteristic alloc] initWithName:@"IEEE 11073-20601 Regulatory Certification Data List"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A50" : [[Characteristic alloc] initWithName:@"PnP ID"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
         };
     }
 
@@ -112,50 +76,6 @@ Here is CharacteristicHelper after the plugin has run for Blood Pressure:
                                         NotifyProperty:@"Excluded" 
                                         IndicateProperty:@"Excluded"],
       
-          @"2A29" : [[Characteristic alloc] initWithName:@"Manufacturer Name String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A24" : [[Characteristic alloc] initWithName:@"Model Number String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A25" : [[Characteristic alloc] initWithName:@"Serial Number String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A27" : [[Characteristic alloc] initWithName:@"Hardware Revision String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A26" : [[Characteristic alloc] initWithName:@"Firmware Revision String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A28" : [[Characteristic alloc] initWithName:@"Software Revision String"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A23" : [[Characteristic alloc] initWithName:@"System ID"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A2A" : [[Characteristic alloc] initWithName:@"IEEE 11073-20601 Regulatory Certification Data List"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
-      
-          @"2A50" : [[Characteristic alloc] initWithName:@"PnP ID"   
-                                        ReadProperty:@"Mandatory" 
-                                        NotifyProperty:@"Excluded" 
-                                        IndicateProperty:@"Excluded"],
         };
     }
 
@@ -167,7 +87,7 @@ Here is CharacteristicHelper after the plugin has run for Blood Pressure:
 
 Identify a Bluetooth device you would like to test or install a simulator such as [BlueSim](https://github.com/AttackPattern/BlueSim). The boilerplate tests a Health Thermometer out of the box, and BlueSim has a Health Thermometer simulator which has been tested with our boilerplate. To test our app prior to using the plugin to update the profile, install BlueSim and turn on the Health Thermometer.
 
-Open the xcode project inside './boilerplate-app'.
+Open the Xcode project inside './boilerplate-app'.
 
 Run the app on a real device with Bluetooth LE available and enabled (you will need to update the Bundle Identifier to your own wildcard).
 
