@@ -1,0 +1,30 @@
+﻿//
+//  CharacteristicHelper.m
+//
+//  Created by Mark Kirby on 29/03/2015.
+//  Copyright (c) 2015 Mark Kirby. All rights reserved.
+//
+
+#import "CharacteristicHelper.h"
+#import "Characteristic.h"
+
+@implementation CharacteristicHelper
+
++(NSDictionary *)getCharacteristics
+{
+    return @{
+      {%- for service in Services -%}
+      {%- for characteristic in service.Characteristics -%}
+      
+      @"{{characteristic.UUID}}" : [[Characteristic alloc] initWithName:@"{{characteristic.Name}}"   
+                                    ReadProperty:@"{{characteristic.Properties.Read}}" 
+                                    NotifyProperty:@"{{characteristic.Properties.Notify}}" 
+                                    IndicateProperty:@"{{characteristic.Properties.Indicate}}"],
+      {%- endfor -%}
+      {%- endfor -%}
+    };
+}
+
+@end
+
+  
