@@ -1,5 +1,5 @@
 //
-//  BluetoothDeveloperStudioHelper.h
+//  CharacteristicHelper.h
 //  BLE_Application
 //
 #import <Foundation/Foundation.h>

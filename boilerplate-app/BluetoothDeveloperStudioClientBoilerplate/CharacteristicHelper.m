@@ -1,5 +1,5 @@
 //
-//  BluetoothDeveloperStudioHelper.m
+//  CharacteristicHelper.m
 //  BLE_Application
 //
 
